@@ -1,6 +1,31 @@
 <?php  
+/*include('connection.php');*/
+$db=new PDO("mysql:host=localhost; dbname=blog", "gulkhayo-009;", "mdk6pjT86QG](.T");
 
-include('connection.php');
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+$uname=$_POST["username"];
+$fullname=$_POST["fullname"];
+$email=$_POST["email"];
+$pass=$_POST["pwd"];
+$passc=$_POST["confirm_pwd"];
+$date = date('Y-m-d H:i:s');
+
+    if(
+        preg_match('/[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{1,3}/i',$email)&&
+        $pass==$passc&&
+        preg_match('/^.{8,}$/i',$pass)
+    )
+    {
+        $stmt=$db->prepare("INSERT INTO users (username,email,password,fullname,dob) VALUES (?,?,?,?,?)");
+        $stmt->bindParam(1,$uname);
+        $stmt->bindParam(2,$email);
+        $stmt->bindParam(3,$pass);
+        $stmt->bindParam(4,$fullname);
+        $stmt->bindParam(5,$date);
+        $stmt->execute();
+        header('Location: index.php');
+    }
+}
 
 ?>
 

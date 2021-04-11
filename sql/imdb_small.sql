@@ -113,9 +113,9 @@ INSERT INTO `movies` VALUES (10920,'Aliens',1986,8.2),(17173,'Animal House',1978
 /*!40000 ALTER TABLE `movies` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
+
 -- Table structure for table `movies_directors`
---
+
 
 DROP TABLE IF EXISTS `movies_directors`;
 CREATE TABLE `movies_directors` (
